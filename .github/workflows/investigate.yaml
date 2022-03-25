@@ -2,7 +2,7 @@ name: Docker Image
 
 on:
   push:
-  dispatch_workflow: 
+  workflow_dispatch: 
 
 jobs:
   ubuntu:
