@@ -28,10 +28,10 @@ jobs:
       - name: Check pyton2 installed
         run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
  
-      - name: Install python3
-        run: apt-get update && apt-get install python3 -y && python3 --version
-
-
       - name: Run install_tool.sh
-        run: ./install_tool.sh
+        run: |
+          apt-get update && \
+          apt-get install python3 -y && \
+          python3 --version && \
+          ./install_tool.sh
     
