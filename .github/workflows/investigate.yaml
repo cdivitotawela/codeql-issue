@@ -14,6 +14,9 @@ jobs:
       - name: Check pyton2 installed
         run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
 
+      - name: Run install_tool.sh
+        run: ./install_tool.sh
+
   ubuntu-container:
     runs-on: ubuntu-latest
     container:
@@ -24,4 +27,7 @@ jobs:
 
       - name: Check pyton2 installed
         run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
+
+      - name: Run install_tool.sh
+        run: ./install_tool.sh
     
