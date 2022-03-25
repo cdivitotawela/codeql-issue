@@ -28,14 +28,16 @@ jobs:
       - name: Check pyton2 installed
         run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
  
-      - name: Run install_tool.sh
+      - name: Install Python3
         run: |
           apt-get update && \
           apt-get install python3 python3-pip -y && \
-          python3 --version && \
-          
-          ./install_tool.sh
+          python3 --version
 
+      - name: Run install_tool.sh
+        run: ./install_tool.sh
+
+  # Verify the fix
   ubuntu-container-fix:
     runs-on: ubuntu-latest
     container:
@@ -46,12 +48,26 @@ jobs:
 
       - name: Check pyton2 installed
         run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
- 
-      - name: Run install_tool.sh
+
+      - name: Install Python3
         run: |
           apt-get update && \
           apt-get install python3 python3-pip -y && \
-          python3 --version && \
+          python3 --version
+
+      - name: Run install_tool_fix.sh
+        run: ./install_tool_fix.sh
           
-          ./install_tool_fix.sh
+  ubuntu-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Check pyton2 installed
+        run: python2 --version && echo "Python2 installed" || echo "Python2 not installed"
+
+      # Verify backward compatibility with the fix.
+      - name: Run install_tool_fix.sh
+        run: ./install_tool_fix.sh      
         
